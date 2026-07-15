@@ -92,7 +92,9 @@
                             <span class="project-status status-complete">complete</span>
                         </div>
                         <p class="project-desc">
-                            Compared four models — logistic regression, a from-scratch CNN, a modified CNN, and a MobileNetV2 transfer-learning model — for classifying brain MRI slices as glioma, meningioma, pituitary tumor, or no tumor. The MobileNetV2 model performed best at 91.4% validation accuracy. Built a Streamlit dashboard where you can upload an MRI slice and compare all four models' predictions side by side. Built with Marco Basile, Tyler Asmussen, and Oden Ineza.
+                            My team, Marco Basile, Tyler Asmussen, and Oden Ineza, and I built a machine-learning pipeline that trains and evaluates four models to 
+                            classify brain MRI slices as glioma, meningioma, pituitary tumor, or no tumor. The MobileNetV2 model performed best at 91.4% validation 
+                            accuracy. Additionally, we built a Streamlit dashboard where you can upload an MRI slice and compare all four models' predictions side by side.
                         </p>
                         <a class="project-link" href="https://github.com/keremyjelly/tumor-classification">View on GitHub →</a>
                     </div>
@@ -101,16 +103,42 @@
                             <span class="project-title">Tetris</span>
                             <span class="project-status status-complete">complete</span>
                         </div>
-                        <p class="project-desc">A description of this project will go here.</p>
+                        <p class="project-desc">
+                            Built a Tetris clone in C using the X11 gfx library, representing the board as a grid and rendering it directly onto the graphics window. Block rotation is done via a 90-degree matrix transpose, with collision and edge detection to stop rotations into occupied cells or off the board. Since gfx2's rectangle rendering was unreliable, I wrote a custom proxy for gfx_fill_rectangle built from layered circles, giving the pieces their own distinct look. Playable with keyboard controls for movement, rotation, and quitting; the game ends when a piece stacks to the top row.
+                        </p>
+                        <a class="project-link" href="https://github.com/keremyjelly/tetris-clone">View on GitHub →</a>
                     </div>
                     <div class="project-item">
                         <div class="project-header">
-                            <span class="project-title">Eli Lilly Micro Project</span>
+                            <span class="project-title">Alzheimer's Early Detection Platform</span>
                             <span class="project-status status-complete">complete</span>
                         </div>
-                        <p class="project-desc">A description of this project will go here.</p>
+                        <p class="project-desc">
+                            A two-stage, caregiver-led digital solution proposed for the Lilly Student-Athlete Micro Project, aimed at closing the ~3.5-year gap between when families notice early Alzheimer's symptoms and diagnosis. Stage one is a non-diagnostic screening survey that turns caregiver observations into explainable risk bands using symptom-frequency patterns rather than a black-box model. Stage two is offered for moderate/high-risk cases, letting caregivers log changes over time and generating structured summaries for primary care visits. We designed the system architecture and produced the pitch script, mockups, and slide deck. Won the 2026 Lilly Student-Athlete Micro Project MVP and Game Changer awards.
+                        </p>
                     </div>
                 </div>
+
+                <h2 id="contact">Contact</h2>
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/xrenbrzl" method="POST">
+                    <!-- Redirects back here after a successful submit, instead of Formspree's generic page -->
+                    <input type="hidden" name="_next" value="https://keremyjelly.github.io/jelly-personal-website/index.html?sent=true#contact">
+                    <input type="hidden" name="_subject" value="New message from jeremykelly's site">
+                    <!-- Honeypot: bots tend to fill every field; real visitors never see this one -->
+                    <input type="text" name="_gotcha" style="display:none">
+
+                    <label class="form-label" for="contact-name">Name</label>
+                    <input class="form-input" type="text" id="contact-name" name="name" required>
+
+                    <label class="form-label" for="contact-email">Email</label>
+                    <input class="form-input" type="email" id="contact-email" name="email" required>
+
+                    <label class="form-label" for="contact-message">Message</label>
+                    <textarea class="form-input" id="contact-message" name="message" rows="5" required></textarea>
+
+                    <button class="form-submit" type="submit">Send</button>
+                </form>
+                <p class="form-success" id="formSuccess" hidden>Thanks — I'll get back to you soon.</p>
             </main>
         </div>
 
@@ -193,6 +221,14 @@
 
             showQuote(currentIndex);
             resetTimer();
+
+            // ── Contact form success state ───────────────────────────
+            // Formspree's _next field redirects back here with ?sent=true
+            // after a successful submit; swap the form for a thank-you note.
+            if (new URLSearchParams(window.location.search).get('sent') === 'true') {
+                document.getElementById('contactForm').hidden = true;
+                document.getElementById('formSuccess').hidden = false;
+            }
         </script>
     </body>
 </html>
